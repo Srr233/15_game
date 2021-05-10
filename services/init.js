@@ -13,5 +13,5 @@ export default function initMapOfGame(wrapper) {
   window.solving = solving(sortedArr, wrapper);
   window.transfer = transfer(sortedArr, wrapper);
   
-  putArrInWrapper(wrapper, sortedArr);
+  putArrInWrapper(sortedArr, wrapper);
 }

@@ -9,7 +9,7 @@ function createCard (num) {
 
   return divWrapper;
 }
-export default function putArrInWrapper (wrapper, arr) {
+export default function putArrInWrapper (arr, wrapper) {
   const copyArr = arr.slice();
 
   const arrInLine = [...copyArr[0], ...copyArr[1], ...copyArr[2], ...copyArr[3]];
