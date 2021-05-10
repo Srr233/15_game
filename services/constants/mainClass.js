@@ -1,2 +1,2 @@
-const mainClass = 'game';
+const mainClass = '.game';
 export default mainClass;
