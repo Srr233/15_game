@@ -9,9 +9,9 @@ import autoSolving from './functionsForUsing/auto-solving.js';
 export default function initMapOfGame(wrapper) {
   const sortedArr = sortGem(createArr());
 
-  window.autoSolving = autoSolving(sortedArr);
-  window.solving = solving(sortedArr);
-  window.transfer = transfer(sortedArr);
+  window.autoSolving = autoSolving(sortedArr, wrapper);
+  window.solving = solving(sortedArr, wrapper);
+  window.transfer = transfer(sortedArr, wrapper);
   
   putArrInWrapper(wrapper, sortedArr);
 }

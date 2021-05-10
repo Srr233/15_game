@@ -1,3 +1,4 @@
-export default function transfer () {
-  console.log('transfer');
+export default function transfer (arr, gameDOM) {
+  return (from, to) => {
+  }
 }

@@ -1,3 +1,4 @@
-export default function autoSolving () {
-  console.log('auto solve');
+export default function autoSolving (arr, gameDOM) {
+  return (from, to) => {
+  }
 }
