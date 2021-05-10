@@ -1,8 +1,8 @@
 import init from './services/init.js';
 import mainClassGame from './services/constants/mainClass.js'
-import solving from './services/functionsFoUsing/solving.js';
-import transfer from './services/functionsFoUsing/transfer.js';
-import autoSolving from './services/functionsFoUsing/auto-solving.js';
+import solving from './services/functionsForUsing/solving.js';
+import transfer from './services/functionsForUsing/transfer.js';
+import autoSolving from './services/functionsForUsing/auto-solving.js';
 
 window.autoSolving = autoSolving;
 window.solving = solving;
