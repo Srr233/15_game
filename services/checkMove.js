@@ -1,4 +1,4 @@
-import { checkSides, checkUpSides, checkTransferToCard, searchCardAroundGivenPos } from './checkSides/checkSides.js';
+import { checkSides, checkUpSides, checkTransferToCard, searchCardAroundGivenPos } from './handlers/checkSides.js';
 import EMPTY_POS from './constants/emptyCardNum.js';
 
 function getCurrentPos (chosenCard, arr) {
@@ -25,16 +25,16 @@ function checkMove (chosenCard, direction, arr) {
   const searchSpace = searchCardAroundGivenPos(chosenPos, EMPTY_POS, arr);
 
   if (resultOfUpSides.length > 0 && searchSpace) {
-    return [[resultOfUpSides, searchSpace]];
+    return { toPos: resultOfUpSides, spacePos: searchSpace };
   } else if (resultOfSides.length > 0 && searchSpace) {
-    return [[resultOfSides, searchSpace]]
+    return { toPos: resultOfSides, spacePos: searchSpace };
   }
-  const checked = checkTransferToCard(chosenPos, direction, arr) || [];
+  const checked = checkTransferToCard(chosenPos, direction, arr);
 
-  if (checked.length > 0) {
-    return checked;
+  if (checked) {
+    return { toPos: checked[1], spacePos: checked[0] };
   }
-  return [];
+  return {};
 }
 
 export { getCurrentPos, checkMove }

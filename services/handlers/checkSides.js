@@ -77,13 +77,13 @@ function checkAngles (chosenPos, direction, arr) {
   switch (chosenPos[0]) {
     case 0:
       resultOfAngle = checkAngle(chosenPos[1], direction, arr[1]);
-      if (resultOfAngle) {
+      if (resultOfAngle !== false) {
         return [1, resultOfAngle];
       }
       return [];
     case 3:
       resultOfAngle = checkAngle(chosenPos[1], direction, arr[2]);
-      if (resultOfAngle) {
+      if (resultOfAngle !== false) {
         return [2, resultOfAngle];
       }
       return [];
@@ -125,13 +125,11 @@ function checkTransferToCard (chosenPos, direction, arr) {
   let foundSpace;
   if (direction === EMPTY_POS) {
     foundSpace = searchCardAroundGivenPos(chosenPos, direction, arr);
-    console.dir(foundSpace)
-  } else {
-    foundDirection = searchCardAroundGivenPos(chosenPos, direction, arr);
-    foundSpace = searchCardAroundGivenPos(chosenPos, EMPTY_POS, arr);
-    console.dir(foundDirection);
-    console.dir(foundSpace);
+    return [foundSpace];
   }
+  foundDirection = searchCardAroundGivenPos(chosenPos, direction, arr);
+  foundSpace = searchCardAroundGivenPos(chosenPos, EMPTY_POS, arr);
+  return [foundSpace, foundDirection];
 }
 
 export { checkSides, checkUpSides, checkTransferToCard, searchCardAroundGivenPos};
