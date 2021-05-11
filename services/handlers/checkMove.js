@@ -1,5 +1,5 @@
-import { checkSides, checkUpSides, checkTransferToCard, searchCardAroundGivenPos } from './handlers/checkSides.js';
-import EMPTY_POS from './constants/emptyCardNum.js';
+import { checkSides, checkUpSides, checkTransferToCard, searchCardAroundGivenPos } from './checkSides.js';
+import EMPTY_POS from '../constants/emptyCardNum.js';
 
 function getCurrentPos (chosenCard, arr) {
   const chosenPos = [];

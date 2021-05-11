@@ -28,7 +28,9 @@
 
   font-size: 25px;
   background-color: red;
+
 }
-[data-index= "16"] {
+[data-index="16"] {
+  z-index: 10;
   background-color: #fff!important;
 }
