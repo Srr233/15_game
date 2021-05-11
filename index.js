@@ -1,7 +1,7 @@
 import init from './services/init.js';
-import mainClassGame from './services/constants/mainClass.js';
+import MAIN_CLASS from './services/constants/mainClass.js';
 
-const wrapper = document.querySelector(mainClassGame);
+const wrapper = document.querySelector(MAIN_CLASS);
 
 init(wrapper);
 

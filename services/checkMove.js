@@ -1,59 +1,5 @@
-function checkSides (chosenPos, direction, arr) {
-  let isContain;
-  switch(chosenPos[1]) {
-    case 0:
-      isContain = arr[chosenPos[0]][1] === direction;
-      if (isContain) {
-        return [chosenPos[0], 1];
-      }
-      return [];
-    case 3:
-      isContain = arr[chosenPos[0]][2] === direction;
-      if (isContain) {
-        return [chosenPos[0], 2];
-      }
-      return [];
-    default:
-      const isLeftContain = arr[chosenPos[0]][chosenPos[1] - 1] === direction;
-      const isRightContain = arr[chosenPos[0]][chosenPos[1] + 1] === direction;
-
-      if (isLeftContain) {
-        return [chosenPos[0], chosenPos[1] - 1];
-      } else if (isRightContain) {
-        return [chosenPos[0], chosenPos[1] + 1];
-      }
-      return [];
-  }
-}
-
-
-
-
-function checkUpSides (chosenPos, direction, arr) {
-  switch(chosenPos[0]) {
-    case 0:
-      if (arr[1][chosenPos[1]] === direction) {
-        return [1, chosenPos[1]];
-      }
-      return [];
-    case 3:
-      if (arr[2][chosenPos[1]] === direction) {
-        return [2, chosenPos[1]];
-      }
-      return [];
-    default:
-      if (arr[chosenPos[0] + 1][chosenPos[1]] === direction) {
-        return [chosenPos[0] + 1, chosenPos[1]];
-      } else if (arr[chosenPos[0] - 1][chosenPos[1]] === direction) {
-        return [chosenPos[0] - 1, chosenPos[1]];
-      }
-      return [];
-  }
-}
-
-
-
-
+import { checkSides, checkUpSides, checkTransferToCard, searchCardAroundGivenPos } from './checkSides/checkSides.js';
+import EMPTY_POS from './constants/emptyCardNum.js';
 
 function getCurrentPos (chosenCard, arr) {
   const chosenPos = [];
@@ -69,28 +15,26 @@ function getCurrentPos (chosenCard, arr) {
   return chosenPos;
 }
 
-
-
-
-
 function checkMove (chosenCard, direction, arr) {
-  if (chosenCard > 16) throw new Error('A max num of cards is 16');
-  
+  if (chosenCard > EMPTY_POS) throw new Error('A max num of cards is 16');
+
   const chosenPos = getCurrentPos(chosenCard, arr);
-  const EMPTY_POS = 16;
-  if (direction === EMPTY_POS) {
-    const resultOfSides = checkSides(chosenPos, direction, arr);
-    const resultOfUpSides = checkUpSides(chosenPos, direction, arr);
+  
+  const resultOfSides = checkSides(chosenPos, direction, arr);
+  const resultOfUpSides = checkUpSides(chosenPos, direction, arr);
+  const searchSpace = searchCardAroundGivenPos(chosenPos, EMPTY_POS, arr);
 
-    if (resultOfUpSides.length > 0) {
-      return resultOfUpSides;
-    } else if (resultOfSides.length > 0) {
-      return resultOfSides;
-    }
-    return [];
-  } else {
-
+  if (resultOfUpSides.length > 0 && searchSpace) {
+    return [[resultOfUpSides, searchSpace]];
+  } else if (resultOfSides.length > 0 && searchSpace) {
+    return [[resultOfSides, searchSpace]]
   }
+  const checked = checkTransferToCard(chosenPos, direction, arr) || [];
+
+  if (checked.length > 0) {
+    return checked;
+  }
+  return [];
 }
 
 export { getCurrentPos, checkMove }
