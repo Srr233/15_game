@@ -6,12 +6,12 @@ import transfer from './functionsForUsing/transfer.js';
 import autoSolving from './functionsForUsing/auto-solving.js';
 
 
-export default function initMapOfGame(wrapper) {
+export default function initMapOfGame() {
   const sortedArr = sortGem(createArr());
 
-  window.autoSolving = autoSolving(sortedArr, wrapper);
-  window.solving = solving(sortedArr, wrapper);
-  window.transfer = transfer(sortedArr, wrapper);
+  window.autoSolving = autoSolving(sortedArr);
+  window.solving = solving(sortedArr);
+  window.transfer = transfer(sortedArr);
   
-  putArrInWrapper(sortedArr, wrapper);
+  putArrInWrapper(sortedArr);
 }

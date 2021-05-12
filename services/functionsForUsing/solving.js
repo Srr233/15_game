@@ -1,4 +1,4 @@
-export default function solving (arr, gameDOM) {
+export default function solving (arr) {
   return (from, to) => {
   }
 }

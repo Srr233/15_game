@@ -1,4 +1,7 @@
 import STEP from '../constants/step.js';
+import MAIN_CLASS from '../constants/mainClass.js';
+
+const gameDOM = document.querySelector(MAIN_CLASS);
 
 function changePosUp (currentElem, currentPos, n, direction) {
   if (direction === 'up') {
@@ -39,7 +42,7 @@ function moveDOMCard (from, direction) {
   const getNormalNum = (string) => {
     return +string.slice(0, -2);
   }
-  const currentCard = document.querySelector(`div[data-index="${from}"]`);
+  const currentCard = gameDOM.querySelector(`div[data-index="${from}"]`);
   const {top, left} = window.getComputedStyle(currentCard);
   let normNum;
   switch (direction) {
