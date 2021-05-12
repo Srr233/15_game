@@ -1,18 +1,36 @@
 import STEP from '../constants/step.js';
 
-function changePosPlus(currentElem, currentPos, n, direction) {
+function changePosUp (currentElem, currentPos, n, direction) {
   if (direction === 'up') {
-    if (currentPos !== n) {
+    if (currentPos > n - 3) {
       requestAnimationFrame(() => {
         currentElem.style.top = `${currentPos}px`;
-        changePosPlus(currentElem, currentPos - 3, n, direction);
+        changePosUp(currentElem, currentPos - 3, n, direction);
       });
     }
   } else {
-    if (currentPos !== n) {
+    if (currentPos < n + 3) {
       requestAnimationFrame(() => {
         currentElem.style.top = `${currentPos}px`;
-        changePosPlus(currentElem, currentPos + 3, n, direction);
+        changePosUp(currentElem, currentPos + 3, n, direction);
+      });
+    }
+  }
+}
+
+function changePosLeft (currentElem, currentPos, n, direction) {
+  if (direction === 'left') {
+    if (currentPos > n - 3) {
+      requestAnimationFrame(() => {
+        currentElem.style.left = `${currentPos}px`;
+        changePosLeft(currentElem, currentPos - 3, n, direction);
+      });
+    }
+  } else {
+    if (currentPos < n + 3) {
+      requestAnimationFrame(() => {
+        currentElem.style.left = `${currentPos}px`;
+        changePosLeft(currentElem, currentPos + 3, n, direction);
       });
     }
   }
@@ -27,19 +45,19 @@ function moveDOMCard (from, direction) {
   switch (direction) {
     case 'up':
       normNum = getNormalNum(top) - STEP;
-      changePosPlus(currentCard, getNormalNum(top), normNum, 'up');
+      changePosUp(currentCard, getNormalNum(top), normNum, 'up');
       break;
     case 'left':
       normNum = getNormalNum(left) - STEP;
-      currentCard.style.left = `${getNormalNum(left) - STEP}px`;
+      changePosLeft(currentCard, getNormalNum(left), normNum, 'left');
       break;
     case 'down':
       normNum = getNormalNum(top) + STEP;
-      currentCard.style.top = `${getNormalNum(top) + STEP}px`;
+      changePosUp(currentCard, getNormalNum(top), normNum, 'down');
       break;
     case 'right':
       normNum = getNormalNum(left) + STEP;
-      currentCard.style.left = `${getNormalNum(left) + STEP}px`;
+      changePosLeft(currentCard, getNormalNum(left), normNum, 'right');
       break;
     default:
       throw new Error('direction didn\'t find');
