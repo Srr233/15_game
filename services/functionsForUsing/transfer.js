@@ -4,10 +4,9 @@ import { walk } from '../handlers/walk.js';
 
 export default function transfer (arr) {
   return (from, to) => {
+    console.log(arr);
     const way = checkMove(from, to, arr);
-    if (way.toPos && way.spacePos) {
-      const listOfWays = getListOfWays(way, getCurrentPos(from, arr), arr);
-      walk(listOfWays, arr);
-    }
+    const listOfWays = getListOfWays(way, getCurrentPos(from, arr), arr);
+    walk(listOfWays, arr);
   }
 }
