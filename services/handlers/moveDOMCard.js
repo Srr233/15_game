@@ -5,14 +5,14 @@ function changePosPlus(currentElem, currentPos, n, direction) {
     if (currentPos !== n) {
       requestAnimationFrame(() => {
         currentElem.style.top = `${currentPos}px`;
-        changePosPlus(currentElem, currentPos - 1, n, direction);
+        changePosPlus(currentElem, currentPos - 3, n, direction);
       });
     }
   } else {
     if (currentPos !== n) {
       requestAnimationFrame(() => {
         currentElem.style.top = `${currentPos}px`;
-        changePosPlus(currentElem, currentPos + 1, n, direction);
+        changePosPlus(currentElem, currentPos + 3, n, direction);
       });
     }
   }
