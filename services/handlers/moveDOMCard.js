@@ -5,36 +5,24 @@ const gameDOM = document.querySelector(MAIN_CLASS);
 
 function changePosUp (currentElem, currentPos, n, direction) {
   if (direction === 'up') {
-    if (currentPos > n - 3) {
-      requestAnimationFrame(() => {
-        currentElem.style.top = `${currentPos}px`;
-        changePosUp(currentElem, currentPos - 3, n, direction);
-      });
+    if (currentPos !== n) {
+        currentElem.style.top = `${currentPos - STEP}px`;
     }
   } else {
-    if (currentPos < n + 3) {
-      requestAnimationFrame(() => {
-        currentElem.style.top = `${currentPos}px`;
-        changePosUp(currentElem, currentPos + 3, n, direction);
-      });
+    if (currentPos !== n) {
+        currentElem.style.top = `${currentPos + STEP}px`;
     }
   }
 }
 
 function changePosLeft (currentElem, currentPos, n, direction) {
   if (direction === 'left') {
-    if (currentPos > n - 3) {
-      requestAnimationFrame(() => {
-        currentElem.style.left = `${currentPos}px`;
-        changePosLeft(currentElem, currentPos - 3, n, direction);
-      });
+    if (currentPos !== n) {
+        currentElem.style.left = `${currentPos - STEP}px`;
     }
   } else {
-    if (currentPos < n + 3) {
-      requestAnimationFrame(() => {
-        currentElem.style.left = `${currentPos}px`;
-        changePosLeft(currentElem, currentPos + 3, n, direction);
-      });
+    if (currentPos !== n) {
+        currentElem.style.left = `${currentPos + STEP}px`;
     }
   }
 }

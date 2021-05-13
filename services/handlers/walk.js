@@ -1,14 +1,18 @@
 import { moveDOMCard } from './moveDOMCard.js';
+import { transformWayFromArrToDOM } from './transformToDOM.js';
+
 
 function walk (listOfWays, arr) {
-  for (const wayArr of listOfWays.listForArr) {
+  const forDOM = [];
+  for (const wayArr of listOfWays) {
     const template = arr[wayArr.n[0]][wayArr.n[1]];
     arr[wayArr.n[0]][wayArr.n[1]] = arr[wayArr.to[0]][wayArr.to[1]];
     arr[wayArr.to[0]][wayArr.to[1]] = template;
+    forDOM.push(transformWayFromArrToDOM([wayArr], arr));
   }
-  console.log(arr.slice());
-  for (const way of listOfWays.listForDOM) {
-    setTimeout(() => moveDOMCard(way.n, way.to), 1000);
+  for (const way of forDOM) {
+    moveDOMCard(way[0].n, way[0].to);
+    moveDOMCard(way[1].n, way[1].to);
   }
 }
 
