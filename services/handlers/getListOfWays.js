@@ -1,47 +1,4 @@
-function rotateFromDown (chosenPos) {
-  switch (chosenPos[1]) {
-    case 0:
-      return [
-        { n: [3, 1], to: [2, 1] },
-
-        { n: [3, 0], to: [3, 1] },
-
-        { n: [2, 0], to: [3, 0] },
-
-        { n: [2, 1], to: [2, 0] },
-
-        { n: [3, 1], to: [2, 1] },
-
-        { n: [3, 0], to: [3, 1] }
-      ];
-    case 3:
-      return [
-        { n: [2, 3], to: [2, 2] },
-
-        { n: [2, 3], to: [3, 3] },
-
-        { n: [3, 2], to: [3, 3] },
-
-        { n: [3, 3], to: [3, 2] },
-
-        { n: [3, 2], to: [2, 2] },
-
-        { n: [2, 3], to: [2, 2] },
-      ];
-    default:
-  }
-}
-
-function rotateFromUp (chosenPos, to) {
-
-}
-
-function rotateFromMiddle (chosenPos, to) {
-
-}
-
-
-
+import { rotateFromDown, rotateFromUp, rotateFromMiddle } from './ways.js';
 
 function transformWayFromArrToDOM (arrOfWays, arr) {
   const waysOfDOM = [];
@@ -108,21 +65,21 @@ function getListOfWays (way, chosenPos, arr) {
   const getListForArrAngleToSpace = () => {
     switch (chosenPos[0]) {
       case SIZE:
-        return rotateFromDown(chosenPos);
+        return rotateFromDown(chosenPos, way.spacePos);
       case SIZE - SIZE:
-        return transformWayFromArrToDOM(rotateFromUp(chosenPos, way.spacePos));
+        return rotateFromUp(chosenPos, way.spacePos);
       default:
-        return transformWayFromArrToDOM(rotateFromMiddle(chosenPos, way.spacePos));
+        return rotateFromMiddle(chosenPos, way.spacePos);
     }
   }
   const getListForDOMAngleToSpace = () => {
     switch(chosenPos[0]) {
       case SIZE:
-        return transformWayFromArrToDOM(rotateFromDown(chosenPos), arr);
+        return transformWayFromArrToDOM(rotateFromDown(chosenPos, way.spacePos), arr);
       case SIZE - SIZE:
-        return transformWayFromArrToDOM(rotateFromUp(chosenPos, way.spacePos));
+        return transformWayFromArrToDOM(rotateFromUp(chosenPos, way.spacePos), arr);
       default:
-        return transformWayFromArrToDOM(rotateFromMiddle(chosenPos, way.spacePos));
+        return transformWayFromArrToDOM(rotateFromMiddle(chosenPos, way.spacePos), arr);
     }
   }
 
