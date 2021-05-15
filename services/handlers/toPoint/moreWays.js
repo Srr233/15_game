@@ -1,6 +1,5 @@
 import { getOneWay } from './getOneWay.js';
-
-function moreWays(chosenPos, direction, positionOfSpace) {
+function moreWaysForNotEnoughSpaces(chosenPos, direction, positionOfSpace) {
   const arr = chosenPos[0];
   const point = chosenPos[1];
   let oneStep;
@@ -38,7 +37,84 @@ function moreWays(chosenPos, direction, positionOfSpace) {
       oneStep.u2()
     ];
   } else if (direction === 'left up' && positionOfSpace === 'down') {
-    oneStep = getOneWay(arr, point, { side: 'left', up: 'up' });
+    oneStep = getOneWay(arr, point + 1, { side: 'left', up: 'up' });
+    return [
+      oneStep.u1(), 
+      oneStep.su1(), oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(),
+      oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(),
+      oneStep.u2(), oneStep.su1()
+    ];
+  } else if (direction === 'left up' && positionOfSpace === 'up') {
+    oneStep = getOneWay(arr, point + 1, { side: 'left', up: 'up' });
+    return [
+      oneStep.su1(), oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(),
+      oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(),
+      oneStep.u2(), oneStep.su1()
+    ];
+  } else if (direction === 'right up' && positionOfSpace === 'up') {
+    oneStep = getOneWay(arr, point - 1, { side: 'right', up: 'up' });
+    return [
+      oneStep.su2(), oneStep.u2(), oneStep.sd2(), oneStep.u3(),
+      oneStep.su2(), oneStep.u2(),
+      oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
+      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.u2(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su2(), oneStep.u3()
+    ];
+  } else if (direction === 'right up' && positionOfSpace === 'down') {
+    oneStep = getOneWay(arr, point - 1, { side: 'right', up: 'up' });
+    return [
+      oneStep.sd2(), oneStep.u2(), oneStep.su2(), oneStep.u3(),
+      oneStep.sd2(),
+      oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
+      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.u2(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su2(), oneStep.u3()
+    ];
+  }
+}
+function moreWays(chosenPos, direction, positionOfSpace, isEnoughSpaces = true) {
+  const arr = chosenPos[0];
+  const point = chosenPos[1];
+  let oneStep;
+  if (direction === 'right bottom' && positionOfSpace === 'down' && isEnoughSpaces) {
+    oneStep = getOneWay(arr, point, { side: 'right', up: 'down' });
+    return [
+      oneStep.su1(), oneStep.su2(), oneStep.u3(), oneStep.sd2(), oneStep.u2(),
+      oneStep.su1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1()
+    ];
+  } else if (direction === 'right bottom' && positionOfSpace === 'up' && isEnoughSpaces) {
+    oneStep = getOneWay(arr, point, { side: 'right', up: 'down' });
+    return [
+      oneStep.u1(), oneStep.su1(), oneStep.su2(), oneStep.u3(), oneStep.sd2(),
+      oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.u2(),
+      oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(),
+      oneStep.su2(), oneStep.su1(), oneStep.u1(), oneStep.sd1()
+    ];
+  } else if (direction === 'left bottom' && positionOfSpace === 'down' && isEnoughSpaces) {
+    oneStep = getOneWay(arr, point, { side: 'left', up: 'down' });
+    return [
+      oneStep.su2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd1(), oneStep.u1(),
+      oneStep.su1(), oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2()
+    ];
+  } else if (direction === 'left bottom' && positionOfSpace === 'up' && isEnoughSpaces) {
+    oneStep = getOneWay(arr, point, { side: 'left', up: 'down' });
     return [
       oneStep.u3(), oneStep.su2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(),
       oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd1(),
@@ -46,32 +122,44 @@ function moreWays(chosenPos, direction, positionOfSpace) {
       oneStep.su2(), oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
       oneStep.u2()
     ];
-  } else if (direction === 'left up' && positionOfSpace === 'up') {
+  } else if (direction === 'left up' && positionOfSpace === 'down' && isEnoughSpaces) {
     oneStep = getOneWay(arr, point, { side: 'left', up: 'up' });
     return [
-      oneStep.u3(), oneStep.sd2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(),
-      oneStep.su2(), oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(),
-      oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su2(), oneStep.u3(),
-      oneStep.sd2(), oneStep.u2(), oneStep.su2(), oneStep.u3(), oneStep.sd2(),
-      oneStep.u2()
-    ];
-  } else if (direction === 'right up' && positionOfSpace === 'up') {
-    oneStep = getOneWay(arr, point, { side: 'right', up: 'up' });
-    return [
+      oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
       oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
-      oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su2(),
-      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
-      oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(),
-      oneStep.u2()
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
+      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(), oneStep.u2()
     ];
-  } else if (direction === 'right up' && positionOfSpace === 'down') {
+  } else if (direction === 'left up' && positionOfSpace === 'up' && isEnoughSpaces) {
+    oneStep = getOneWay(arr, point, { side: 'left', up: 'up' });
+    return [
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
+      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(), oneStep.u2()
+    ];
+  } else if (direction === 'right up' && positionOfSpace === 'up' && isEnoughSpaces) {
     oneStep = getOneWay(arr, point, { side: 'right', up: 'up' });
     return [
-      oneStep.u1(), oneStep.su1(), oneStep.su2(), oneStep.u3(), oneStep.sd2(),
-      oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.u2(),
-      oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(),
-      oneStep.su2(), oneStep.su1(), oneStep.u1(), oneStep.sd1()
+      oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1()
     ];
+  } else if (direction === 'right up' && positionOfSpace === 'down' && isEnoughSpaces) {
+    oneStep = getOneWay(arr, point, { side: 'right', up: 'up' });
+    return [
+      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1()
+    ];
+  } else if (!isEnoughSpaces) {
+    return moreWaysForNotEnoughSpaces(chosenPos, direction, positionOfSpace);
   }
 }
 

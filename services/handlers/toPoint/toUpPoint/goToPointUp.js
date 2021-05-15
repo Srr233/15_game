@@ -1,45 +1,66 @@
 import { ifPointUpBottomArr } from "./ifPoint/ifPointUpBottomArr.js";
 import { moreWays } from '../moreWays.js';
 
+function isSpaceLeft (chosenPos, way) {
+  if (chosenPos[1] > way.spacePos[1]) {
+    return 'left';
+  }
+  return 'right';
+}
+
+function spaceUp (chosenPos, way) {
+  /* do we have spaces for?
+  [3, 8, 7]
+  [9, 12, 16]
+  */
+  let isEnoughSpaces;
+
+  if (isSpaceLeft(chosenPos, way) === 'right') {
+    isEnoughSpaces = () => chosenPos[1] + 2 <= 3;
+    if (isEnoughSpaces()) {
+      return moreWays(chosenPos, 'right up', 'up');
+    }
+    return moreWays(chosenPos, 'right up', 'up', false);
+  }
+
+  isEnoughSpaces = () => chosenPos[1] - 2 >= 0;
+  if (isEnoughSpaces()) {
+    return moreWays(chosenPos, 'left up', 'up');
+  }
+  return moreWays(chosenPos, 'left up', 'up', false);
+}
+function spaceDown (chosenPos, way) {
+  /* do we have spaces for?
+  [3, 8, 7]
+  [9, 12, 16]
+  */
+  let isEnoughSpaces;
+
+  if (isSpaceLeft(chosenPos, way) === 'right') {
+    isEnoughSpaces = () => chosenPos[1] + 2 <= 3;
+    if (isEnoughSpaces()) {
+      return moreWays(chosenPos, 'right up', 'down');
+    }
+    return moreWays(chosenPos, 'right up', 'down', false);
+  }
+
+  isEnoughSpaces = () => chosenPos[1] - 2 >= 0;
+  if (isEnoughSpaces()) {
+    return moreWays(chosenPos, 'left up', 'down');
+  }
+  return moreWays(chosenPos, 'left up', 'down', false);
+}
+
 function goToPointUp(chosenPos, way) {
   let ways;
-  switch (chosenPos[0]) {
-    case 3:
-      ways = ifPointUpBottomArr(chosenPos, way);
-      return ways;
-    default:
-      if (way.spacePos[0] < chosenPos[0] && chosenPos[1] > way.spacePos[1]) {
-        if (way.spacePos[1] === 2) {
-          ways = rotateLeftUpWays(chosenPos);
-          if (way.spacePos[0] > 2) {
-            ways.push(...moreWays(chosenPos, 'left down', 'down'));
-          } else {
-            ways.push(...moreWays(chosenPos, 'left up', 'up'));
-          }
-        } else {
-
-        }
-      } else {
-        if (way.spacePos[1] === 2) {
-          if (chosenPos[1] < way.spacePos[1]) {
-            ways = rotateRightUpWays(chosenPos);
-            if (way.spacePos[0] < chosenPos[0]) {
-              ways.push(...moreWays(chosenPos, 'right up', 'up'));
-            } else {
-              ways.push(...moreWays(chosenPos, 'right up', 'down'));
-            }
-          } else {
-            ways = rotateLeftUpWays(chosenPos);
-            if (way.spacePos[0] < 2) {
-              ways.push(...moreWays(chosenPos, 'left up', 'down'));
-            } else {
-              ways.push(...moreWays(chosenPos, 'left up', 'up'));
-            }
-          }
-        }
-      }
+  /* space up or down 
+  [1, 16, 2] [1, 4, 2]
+  [3, 4, 7] [3, 16, 7]
+  */
+  if (chosenPos[0] > way.spacePos[0]) {
+    return spaceUp(chosenPos, way);
   }
-  return ways;
+  return spaceDown(chosenPos, way);
 }
 
 export { goToPointUp };

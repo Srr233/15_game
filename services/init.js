@@ -9,9 +9,9 @@ import autoSolving from './functionsForUsing/auto-solving.js';
 export default function initMapOfGame() {
   //const sortedArr = sortGem(createArr());
   const sortedArr = [
-    [1, 2, 5, 4],
-    [10, 6, 3, 8],
-    [16, 14, 13, 12],
+    [10, 2, 3, 1],
+    [16, 6, 8, 4],
+    [5, 14, 13, 12],
     [9, 11, 15, 7]
   ];
   window.autoSolving = autoSolving(sortedArr);
