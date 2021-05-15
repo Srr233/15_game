@@ -1,82 +1,11 @@
-function rotateLeftUpWays (chosenPos) {
-  const arr = chosenPos[0];
-  const point = chosenPos[1];
-  const result = [
-    { n: [arr - 1, point], to: [arr - 1, point - 1] },
-
-    { n: [arr, point], to: [arr - 1, point] },
-
-    { n: [arr, point - 1], to: [arr, point] },
-
-    { n: [arr - 1, point - 1], to: [arr, point - 1] },
-
-    { n: [arr - 1, point], to: [arr - 1, point - 1] },
-
-    { n: [arr, point], to: [arr - 1, point] }
-  ];
-  return result;
-}
-
-function rotateLeftBottomWays (chosenPos) {
-  const arr = chosenPos[0];
-  const point = chosenPos[1];
-  const result = [
-    { n: [arr, point - 1], to: [arr + 1, point - 1] },
-
-    { n: [arr, point], to: [arr, point - 1] },
-
-    { n: [arr + 1, point], to: [arr, point] },
-
-    { n: [arr + 1, point - 1], to: [arr + 1, point] },
-
-    { n: [arr, point - 1], to: [arr + 1, point - 1] },
-
-    { n: [arr, point], to: [arr, point - 1] }
-  ];
-  return result;
-}
-
-function rotateRightUpWays(chosenPos) {
-  const arr = chosenPos[0];
-  const point = chosenPos[1];
-  const result = [
-    { n: [arr, point + 1], to: [arr - 1, point + 1] },
-
-    { n: [arr, point], to: [arr, point + 1] },
-
-    { n: [arr - 1, point], to: [arr, point] },
-
-    { n: [arr - 1, point + 1], to: [arr - 1, point] },
-
-    { n: [arr, point + 1], to: [arr - 1, point + 1] },
-
-    { n: [arr, point], to: [arr, point + 1] }
-  ];
-  return result;
-}
-
-function rotateRightBottomWays(chosenPos) {
-  const arr = chosenPos[0];
-  const point = chosenPos[1];
-  const result = [
-    { n: [arr, point + 1], to: [arr + 1, point + 1] },
-
-    { n: [arr, point], to: [arr, point + 1] },
-
-    { n: [arr + 1, point], to: [arr, point] },
-
-    { n: [arr + 1, point + 1], to: [arr + 1, point] },
-
-    { n: [arr, point + 1], to: [arr + 1, point + 1] },
-
-    { n: [arr, point], to: [arr, point + 1] }
-  ];
-  return result;
-}
-
-
-
-
+import { goToPointUp } from './toPoint/toUpPoint/goToPointUp.js';
+import { goToPointBottom } from './toPoint/toBottomPoint/goToPointBottom.js';
+import { 
+  rotateLeftBottomWays, 
+  rotateLeftUpWays, 
+  rotateRightUpWays, 
+  rotateRightBottomWays 
+} from './toPoint/rotate.js'
 
 function rotateFromDown(chosenPos, spacePos) {
   switch (chosenPos[1]) {
@@ -188,48 +117,6 @@ function rotateFromMiddle (chosenPos, spacePos) {
 }
 
 
-
-function moreWays (chosenPos, direction) {
-  if (direction === 'right bottom') {
-    return [
-    { n: [0, 1], to: [0, 0] },
-    { n: [1, 1], to: [0, 1] },
-    { n: [1, 0], to: [1, 1] },
-    { n: [0, 0], to: [1, 0] },
-    { n: [0, 1], to: [0, 0] }
-  ];
-  }
-}
-
-function goToPointUp (chosenPos, way) {
-
-}
-
-function goToPointBottom(chosenPos, way) {
-  let ways;
-  switch(chosenPos[0]) {
-    case 0:
-      switch(chosenPos[1]) {
-        case 0:
-          ways = rotateRightBottomWays(chosenPos);
-          ways.push(...moreWays(chosenPos, 'right bottom'));
-          break;
-        case 3:
-          ways = rotateLeftBottomWays(chosenPos);
-          break;
-        default:
-          if (chosenPos[1] > way.spacePos[1]) {
-            ways = rotateLeftBottomWays(chosenPos);
-          } else {
-            ways = rotateRightBottomWays(chosenPos);
-            
-          }
-      }
-    case 3:
-    default:
-  }
-  return ways;
-}
 
 function goToPointLeft(chosenPos, way) {
 
