@@ -1,4 +1,3 @@
-import { ifPointUpBottomArr } from "./ifPoint/ifPointUpBottomArr.js";
 import { moreWays } from '../moreWays.js';
 
 function isSpaceLeft (chosenPos, way) {
@@ -57,10 +56,10 @@ function goToPointUp(chosenPos, way) {
   [1, 16, 2] [1, 4, 2]
   [3, 4, 7] [3, 16, 7]
   */
-  if (chosenPos[0] > way.spacePos[0]) {
-    return spaceUp(chosenPos, way);
+  if (chosenPos[0] === way.spacePos[0]) {
+    return spaceDown(chosenPos, way);
   }
-  return spaceDown(chosenPos, way);
+  return spaceUp(chosenPos, way);
 }
 
 export { goToPointUp };

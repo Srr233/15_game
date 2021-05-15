@@ -43,10 +43,10 @@ const getOneWay = (arr, point, options) => {
         return { n: [arr, point], to: [arr, point - 1] };
       },
       su1() {
-        return { n: [arr, point - 1], to: [arr, point - 2] };
+        return { n: [arr, point - 2], to: [arr, point - 1] };
       },
       sd2() {
-        return { n: [arr + 1, point], to: [arr + 1, point - 1] };
+        return { n: [arr + 1, point - 1], to: [arr + 1, point] };
       },
       sd1() {
         return { n: [arr + 1, point - 1], to: [arr + 1, point - 2] };
