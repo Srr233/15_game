@@ -16,7 +16,7 @@ function getCurrentPos (chosenCard, arr) {
 }
 
 function checkMove (chosenCard, direction, arr) {
-  if (chosenCard > EMPTY_POS) throw new Error('A max num of cards is 16');
+  if (chosenCard > 15) throw new Error('A max num of cards is 16');
 
   const chosenPos = getCurrentPos(chosenCard, arr);
   

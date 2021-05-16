@@ -1,2 +1,2 @@
-const EMPTY_POS = 16;
+const EMPTY_POS = 0;
 export default EMPTY_POS;
