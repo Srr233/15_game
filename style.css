@@ -29,6 +29,7 @@
   font-size: 25px;
   background-color: red;
 
+  transition: .2s;
 }
 [data-index="16"] {
   z-index: -10;

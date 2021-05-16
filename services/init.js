@@ -7,13 +7,7 @@ import autoSolving from './functionsForUsing/auto-solving.js';
 
 
 export default function initMapOfGame() {
-  //const sortedArr = sortGem(createArr());
-  const sortedArr = [
-    [10, 2, 3, 8],
-    [14, 16, 4, 6],
-    [15, 11, 13, 12],
-    [1, 9, 15, 7]
-  ];
+  const sortedArr = sortGem(createArr());
   window.autoSolving = autoSolving(sortedArr);
   window.solving = solving(sortedArr);
   window.transfer = transfer(sortedArr);
