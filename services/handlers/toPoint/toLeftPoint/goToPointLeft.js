@@ -1,54 +1,52 @@
 import { moreWays } from '../moreWays.js';
 
-function isSpaceLeft(chosenPos, way) {
-  if (chosenPos[1] > way.spacePos[1]) {
-    return 'left';
+function isSpaceSame(chosenPos, way) {
+  if (chosenPos[0] > way.spacePos[0]) {
+    return 'up';
   }
-  return 'right';
+  return 'down';
 }
 
-function spaceRight(chosenPos, way) {
+function spaceAnother(chosenPos, way) {
   /* do we have spaces for?
   [3, 8, 7]
   [9, 12, 16]
   */
-  let isEnoughSpaces;
+  let isEnoughSpaces = () => chosenPos[1] - 2 >= 0;
 
-  if (isSpaceLeft(chosenPos, way) === 'right') {
-    isEnoughSpaces = () => chosenPos[1] + 2 <= 3;
+  if (isSpaceSame(chosenPos, way) === 'up') {
     if (isEnoughSpaces()) {
-      return moreWays(chosenPos, 'right up', 'up');
+      return moreWays(chosenPos, 'left up', 'another');
     }
-    return moreWays(chosenPos, 'right up', 'up', false);
+    return moreWays(chosenPos, 'left up', 'another', false);
   }
 
-  isEnoughSpaces = () => chosenPos[1] - 2 >= 0;
   if (isEnoughSpaces()) {
-    return moreWays(chosenPos, 'left up', 'up');
+    return moreWays(chosenPos, 'left down', 'another');
   }
-  return moreWays(chosenPos, 'left up', 'up', false);
+  return moreWays(chosenPos, 'left down', 'another', false);
 }
-function spaceLeft(chosenPos, way) {
+
+
+function sameSpace(chosenPos, way) {
   /* do we have spaces for?
   [3, 8, 7]
   [9, 12, 16]
   */
-  let isEnoughSpaces;
+  let isEnoughSpaces = () => chosenPos[1] - 2 >= 0;
 
-  if (isSpaceLeft(chosenPos, way) === 'right') {
-    isEnoughSpaces = () => chosenPos[1] + 2 <= 3;
+  if (isSpaceSame(chosenPos, way) === 'up') {
     if (isEnoughSpaces()) {
-      return moreWays(chosenPos, 'right up', 'down');
+      return moreWays(chosenPos, 'left up', 'same');
     }
-    return moreWays(chosenPos, 'right up', 'down', false);
+    return moreWays(chosenPos, 'left up', 'same', false);
   }
-
-  isEnoughSpaces = () => chosenPos[1] - 2 >= 0;
   if (isEnoughSpaces()) {
-    return moreWays(chosenPos, 'left up', 'down');
+    return moreWays(chosenPos, 'left down', 'same');
   }
-  return moreWays(chosenPos, 'left up', 'down', false);
+  return moreWays(chosenPos, 'left down', 'same', false);
 }
+
 
 function goToPointLeft(chosenPos, way) {
   let ways;
@@ -57,9 +55,9 @@ function goToPointLeft(chosenPos, way) {
   [3, 4, 7] [3, 16, 7]
   */
   if (chosenPos[1] === way.spacePos[1]) {
-    return spaceLeft(chosenPos, way);
+    return sameSpace(chosenPos, way);
   }
-  return spaceRight(chosenPos, way);
+  return spaceAnother(chosenPos, way);
 }
 
 export { goToPointLeft };

@@ -110,11 +110,11 @@ function moreWaysForNotEnoughSpaces(chosenPos, direction, positionOfSpace) {
 
 function moreWaysForSidesNotEnoughSpace(chosenPos, direction, positionOfSpace) {
   const arr = chosenPos[0];
-  const point = chosenPos[1] - 1;
+  const point = chosenPos[1];
   let oneStep;
 
   if (direction === 'right up') {
-    oneStep = getOneWay(arr, point, { side: 'right', up: 'up' });
+    oneStep = getOneWay(arr, point - 1, { side: 'right', up: 'up' });
     if (positionOfSpace === 'same') {
       return [
         oneStep.su1(),
@@ -135,7 +135,7 @@ function moreWaysForSidesNotEnoughSpace(chosenPos, direction, positionOfSpace) {
 
 
   if (direction === 'right down') {
-    oneStep = getOneWay(arr, point, { side: 'right', up: 'down' });
+    oneStep = getOneWay(arr, point - 1, { side: 'right', up: 'down' });
     if (positionOfSpace === 'same') {
       return [
         oneStep.sd2(), oneStep.u3(), oneStep.su2(),
@@ -156,10 +156,11 @@ function moreWaysForSidesNotEnoughSpace(chosenPos, direction, positionOfSpace) {
 
 
   if (direction === 'left up') {
-    oneStep = getOneWay(arr, point, { side: 'left', up: 'up' });
+    oneStep = getOneWay(arr, point + 1, { side: 'left', up: 'up' });
     if (positionOfSpace === 'same') {
       return [
-
+        oneStep.su2(), oneStep.u2(), oneStep.sd2(),
+        
       ];
     }
     return [
@@ -169,14 +170,24 @@ function moreWaysForSidesNotEnoughSpace(chosenPos, direction, positionOfSpace) {
 
 
   if (direction === 'left down') {
-    oneStep = getOneWay(arr, point, { side: 'left', up: 'down' });
+    oneStep = getOneWay(arr, point + 1, { side: 'left', up: 'down' });
     if (positionOfSpace === 'same') {
       return [
-
+        oneStep.sd1(), oneStep.u1(), oneStep.su1(),
+        oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.su2(),
+        oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+        oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+        oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+        oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1()
       ];
     }
     return [
-
+      oneStep.u1(), oneStep.su1(),
+      oneStep.u2(), oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.su2(),
+      oneStep.u3(), oneStep.sd2(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(),
+      oneStep.sd1(), oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1()
     ];
   }
 }
@@ -242,11 +253,19 @@ function moreWaysForSides(chosenPos, direction, positionOfSpace, isEnoughSpaces 
     oneStep = getOneWay(arr, point, { side: 'left', up: 'up' });
     if (positionOfSpace === 'same') {
       return [
-
+        oneStep.su2(), oneStep.su1(),
+        oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+        oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
+        oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
+        oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd2(), oneStep.u3()
       ];
     }
     return [
-
+      oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
+      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd2(), oneStep.u3()
     ];
   }
 
@@ -255,11 +274,20 @@ function moreWaysForSides(chosenPos, direction, positionOfSpace, isEnoughSpaces 
     oneStep = getOneWay(arr, point, { side: 'left', up: 'down' });
     if (positionOfSpace === 'same') {
       return [
-
+        oneStep.u3(), oneStep.su2(),
+        oneStep.u2(),
+        oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd1(),
+        oneStep.u1(), oneStep.su1(), oneStep.su2(), oneStep.u3(), oneStep.sd2(),
+        oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.sd2(),
       ];
     }
     return [
-
+      oneStep.sd2(),
+      oneStep.u3(), oneStep.su2(),
+      oneStep.u2(),
+      oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd1(),
+      oneStep.u1(), oneStep.su1(), oneStep.su2(), oneStep.u3(), oneStep.sd2(),
+      oneStep.u2(), oneStep.su1(), oneStep.u1(), oneStep.sd1(), oneStep.sd2(),
     ];
   }
 
