@@ -10,7 +10,7 @@ export default function initMapOfGame() {
   //const sortedArr = sortGem(createArr());
   const sortedArr = [
     [10, 2, 3, 8],
-    [16, 6, 4, 14],
+    [14, 6, 4, 16],
     [15, 11, 13, 12],
     [1, 9, 15, 7]
   ];

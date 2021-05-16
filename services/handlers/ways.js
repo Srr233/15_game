@@ -1,5 +1,7 @@
 import { goToPointUp } from './toPoint/toUpPoint/goToPointUp.js';
 import { goToPointBottom } from './toPoint/toBottomPoint/goToPointBottom.js';
+import { goToPointLeft } from './toPoint/toLeftPoint/goToPointLeft.js'
+import { goToPointRight } from './toPoint/toRightPoint/goToPointRight.js'
 import { 
   rotateLeftBottomWays, 
   rotateLeftUpWays, 
@@ -115,18 +117,6 @@ function rotateFromMiddle (chosenPos, spacePos) {
     return rotateFromCenter();
   }
 }
-
-
-
-function goToPointLeft(chosenPos, way) {
-
-}
-
-function goToPointRight(chosenPos, way) {
-
-}
-
-
 
 
 export { 
