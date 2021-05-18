@@ -232,19 +232,17 @@ function moreWaysForSides(chosenPos, direction, positionOfSpace, isEnoughSpaces 
         oneStep.sd1(),
         oneStep.u2(), oneStep.su1(),
         oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
-        oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
-        oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
-        oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd1(), oneStep.u1(),
-        oneStep.su1(), oneStep.su2()
+        oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+        oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+        oneStep.u2()
       ];
     }
     return [
       oneStep.u2(), oneStep.su1(),
       oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
-      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.u2(),
-      oneStep.sd1(), oneStep.u1(), oneStep.su1(), oneStep.u2(), oneStep.sd2(),
-      oneStep.u3(), oneStep.su2(), oneStep.u2(), oneStep.sd1(), oneStep.u1(),
-      oneStep.su1(), oneStep.su2()
+      oneStep.u2(), oneStep.sd2(), oneStep.u3(), oneStep.su2(), oneStep.su1(),
+      oneStep.u1(), oneStep.sd1(), oneStep.sd2(), oneStep.u3(), oneStep.su2(),
+      oneStep.u2()
     ];
   }
 
