@@ -45,9 +45,6 @@ function getListOfWays (way, chosenPos, arr) {
       }
     }
   }
-  console.log(chosenPos);
-  console.log(way.toPos);
-  console.log(way.spacePos);
   if (way.toPos && way.spacePos) {
     if (way.toPos.every((item, i) => way.spacePos[i] === item)) {
       return getListForArr();
