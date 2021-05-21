@@ -30,7 +30,7 @@ const ways = (point) => ({
   })()
 });
 
-function searchWay(arr, start, goal) {
+function searchWay(arr, start, goal, block) {
   let research = [];
   const explored = [];
 
@@ -48,8 +48,11 @@ function searchWay(arr, start, goal) {
   let nodes = [];
 
   research.push(s);
-
-
+  if (block) {
+    for (const blocked of block) {
+      explored.push(blocked);
+    }
+  }
   while (research.length) {
     const pop = research.shift();
     explored.push(pop);

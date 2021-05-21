@@ -1,9 +1,8 @@
 import { searchWay } from "./searchWay.js";
 
-function getWay (arr, start, goal) {
-  let result = searchWay(arr, start, goal);
+function getWay (arr, start, goal, block) {
+  let result = searchWay(arr, start, goal, block);
   let ways = [];
-
   while (result.previous) {
     
     ways.push({
@@ -12,7 +11,7 @@ function getWay (arr, start, goal) {
     });
     result = result.previous;
   }
-  return ways;
+  return ways.reverse();
 }
 
 export { getWay };
