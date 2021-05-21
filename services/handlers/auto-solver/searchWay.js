@@ -42,7 +42,6 @@ function searchWay(arr, start, goal, block) {
   const noHasN = (n) => explored.findIndex(i => {
     return i.nArr === n.nArr && i.nIndex === n.nIndex
   }) < 0;
-
   const s = searchNumber(arr, start);
   const g = searchNumber(arr, goal);
   let nodes = [];

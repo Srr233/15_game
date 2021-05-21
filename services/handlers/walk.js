@@ -2,7 +2,7 @@ import { getWay } from './auto-solver/getWay.js';
 import { moveDOMCard } from './moveDOMCard.js';
 import { transformWayFromArrToDOM } from './transformToDOM.js';
 
-function walk (listOfWays, arr, auto, isRotate) {
+function walk (listOfWays, arr, auto) {
   const forDOM = [];
   let time = 0;
   if (!auto) {
