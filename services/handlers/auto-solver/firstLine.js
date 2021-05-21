@@ -132,12 +132,10 @@ function getFirstLine (arr, goal, block, twoLine) {
       goal[1] += 1;
     }
   }
-  return forDOM;
+  return [forDOM, block];
 }
 
 function solveFirstLine (arr, goal, block) {
-  const result = [];
-  result.push(...getFirstLine(arr, goal, block, [1, 2, 3, 4, 5, 9, 13]));
-  return result;
+  return getFirstLine(arr, goal, block, [1, 2, 3, 4, 5, 9, 13]);
 }
 export { solveFirstLine };
