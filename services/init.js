@@ -14,5 +14,5 @@ export default function initMapOfGame() {
   window.transfer = transfer(sortedArr);
   putArrInWrapper(sortedArr);
   tieTransferAndGame();
-  setTimeout(() => window.autoSolving(), 1000);
+  setTimeout(() => window.autoSolving(), 200);
 }
