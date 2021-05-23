@@ -8,7 +8,7 @@ import { tieTransferAndGame } from './handlers/tieTransfer/tieTransfer.js';
 
 
 export default function initMapOfGame() {
-  const sortedArr = sortGem(createArr());
+  let sortedArr = sortGem(createArr());
   window.autoSolving = autoSolving(sortedArr);
   window.solving = solving(sortedArr);
   window.transfer = transfer(sortedArr);

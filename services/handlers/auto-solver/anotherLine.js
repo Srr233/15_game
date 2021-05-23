@@ -91,14 +91,10 @@ function getAnotherLine(arr, goal, block, twoLine) {
   block.push({ nArr: curr[0], nIndex: curr[1] });
   forDOM.push(...walk(wayForN, arr, block));
 
-  return forDOM;
+  return [forDOM, block];
 }
 
 function solveAnotherLine(arr, goal, block) {
-  const result = [];
-  result.push(...getAnotherLine(arr, goal, block, [8, 7, 6]));
-  // result.push(...getAnotherLine(arr, goal, block, [6, 7, 8]));
-  // result.push(...getAnotherLine(arr, goal, block, [6, 7, 8]));
-  return result;
+  return getAnotherLine(arr, goal, block, [8, 7, 6]);
 }
 export { solveAnotherLine };

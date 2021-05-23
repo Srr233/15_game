@@ -8,8 +8,9 @@ function checkCorrectGem (arr) {
       }
     }
   }
-  return resultSequence % 2 === 0;
+  return !(resultSequence % 2);
 }
+
 function sortGem (arr) {
   let newArr = arr.slice();
   do {
