@@ -1,6 +1,7 @@
 import { solveAnotherLine } from "../handlers/auto-solver/anotherLine.js";
 import { solveFirstLine } from "../handlers/auto-solver/firstLine.js";
 import { solveLastLine } from "../handlers/auto-solver/lastLine.js";
+import { isDone } from "../handlers/isDone.js";
 
 export default function solving (realArr) {
   const message = (n, way) => {
@@ -33,17 +34,21 @@ export default function solving (realArr) {
     forDOM.push(...lastLine[0]);
 
     alert('Look at the console.');
-    if (!lastLine[1]) console.log('Game can\'t be solved. But here are ways to be closer to finish!');
-    console.log('\n');
-    let countOfWays = 0;
-    for (const way of forDOM) {
-      countOfWays += 1;
-      if (way[0].n !== 0) {
-        message(way[0].n, way[0].to);
-      } else {
-        message(way[1].n, way[1].to);
+    if (!isDone(realArr)) {
+      if (!lastLine[1]) console.log('Game can\'t be solved. But here are ways to be closer to finish!');
+      console.log('\n');
+      let countOfWays = 0;
+      for (const way of forDOM) {
+        countOfWays += 1;
+        if (way[0].n !== 0) {
+          message(way[0].n, way[0].to);
+        } else {
+          message(way[1].n, way[1].to);
+        }
       }
+      console.log(`Amount of ways to solve: ${countOfWays}`);
+    } else {
+      console.log('Game is solved!');
     }
-    console.log(`Amount of ways to solve: ${countOfWays}`);
   }
 }
