@@ -23,12 +23,11 @@ export default function autoSolving (arr) {
     forDOM.push(...lastLine[0]);
 
     if (!lastLine[1]) alert('Game can\'t be solved. Look!');
-    
+
     let time = 0;
     for (const way of forDOM) {
       time += 1;
       setTimeout(() => {
-        console.dir(way);
         moveDOMCard(way[0].n, way[0].to);
         moveDOMCard(way[1].n, way[1].to);
       }, time * 200);

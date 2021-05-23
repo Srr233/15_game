@@ -3,10 +3,8 @@ import { walk } from "../walk.js";
 import { getWay } from "./getWay.js";
 
 function getLastLine(arr, goal, block, twoLine) {
-  console.dir(arr);
   const forDOM = [];
   let copyGoal;
-  let copyBlock;
   const i = twoLine[0];
 
   let wayForN;
