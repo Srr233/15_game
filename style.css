@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+}
+.wrapper {
+  min-width: 400px;
+  max-width: 420px;
+}
+.game {
+  width: 400px;
+  height: 400px;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.game > div {
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.game > div > div {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100px;
+  height: 100px;
+
+  font-size: 25px;
+  background-color: red;
+
+  transition: .2s;
+}
+[data-index="0"] {
+  z-index: 9;
+  background-color: #fff!important;
+}
+
+.target {
+  background-color: salmon!important;
+}
+
+.buttons {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+button { 
+  margin: 50px;
+}

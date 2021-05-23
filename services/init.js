@@ -1,9 +1,15 @@
 import createArr from './createArr.js';
-import sortOfGameArr from './sortOfGameArr.js';
+import { sortGem } from './sortOfGameArr.js';
 import putArrInWrapper from './putArrInWrapper.js';
+import solving from './functionsForUsing/solving.js';
+import transfer from './functionsForUsing/transfer.js';
+import autoSolving from './functionsForUsing/auto-solving.js';
 
-export default function initMapOfGame(wrapper) {
-  const arr = createArr();
-  const sortedArr = sortOfGameArr(arr);
-  putArrInWrapper(wrapper, sortedArr);
+
+export default function initMapOfGame() {
+  let sortedArr = sortGem(createArr());
+  window.autoSolving = autoSolving(sortedArr);
+  window.solving = solving(sortedArr);
+  window.transfer = transfer(sortedArr);
+  putArrInWrapper(sortedArr);
 }

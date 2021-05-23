@@ -1,13 +1,11 @@
-import autoSolving from './services/functionsFoUsing/auto-solving.js';
-import solving from './services/functionsFoUsing/solving.js';
-import transfer from './services/functionsFoUsing/transfer.js';
 import init from './services/init.js';
+import MAIN_CLASS from './services/constants/mainClass.js';
+import { tieButtons } from './services/tieButtons.js';
+import { tieTransferAndGame } from './services/handlers/tieTransfer/tieTransfer.js';
 
-window.autoSolving = autoSolving;
-window.solving = solving;
-window.transfer = transfer;
-
-const wrapper = document.querySelector('.wrapper');
+const wrapper = document.querySelector(MAIN_CLASS);
 
 init(wrapper);
+tieButtons();
+tieTransferAndGame()
 
