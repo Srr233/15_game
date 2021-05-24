@@ -15,7 +15,7 @@ function getCurrentPos (chosenCard, arr) {
   return chosenPos;
 }
 
-function checkMove (chosenCard, direction, arr) {
+function getPositionOfSpaceAndGoal (chosenCard, direction, arr) {
   if (chosenCard > 15) throw new Error('A max num of cards is 16');
 
   const chosenPos = getCurrentPos(chosenCard, arr);
@@ -37,4 +37,4 @@ function checkMove (chosenCard, direction, arr) {
   return {};
 }
 
-export { getCurrentPos, checkMove }
+export { getCurrentPos, getPositionOfSpaceAndGoal }
