@@ -118,7 +118,15 @@ function rotateFromMiddle (chosenPos, spacePos) {
   }
 }
 
-
+export default {
+  rotateFromDown,
+  rotateFromUp,
+  rotateFromMiddle,
+  goToPointUp,
+  goToPointBottom,
+  goToPointLeft,
+  goToPointRight
+}
 export { 
   rotateFromDown, 
   rotateFromUp, 
