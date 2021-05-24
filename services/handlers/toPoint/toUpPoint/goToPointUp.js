@@ -1,10 +1,5 @@
+import { isSpaceLeft } from '../checkingSpace.js';
 import { getMoreCorrectWays } from '../getMoreCorrectWays.js';
-
-function isSpaceLeft (chosenPos, way) {
-  if (chosenPos[1] > way.spacePos[1]) return 'left';
-  return 'right';
-}
-
 
 function spaceUp (chosenPos, way) {
   const options = { 

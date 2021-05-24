@@ -1,11 +1,5 @@
+import { isSpaceSame } from '../checkingSpace.js';
 import { getMoreCorrectWays } from '../getMoreCorrectWays.js';
-
-function isSpaceSame(chosenPos, way) {
-  if (chosenPos[0] > way.spacePos[0]) {
-    return 'up';
-  }
-  return 'down';
-}
 
 function spaceAnother(chosenPos, way) {
   const options = {
