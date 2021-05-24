@@ -10,16 +10,14 @@ export default function transfer (arr) {
   return (from, to) => {
     const positions = getPositionOfSpaceAndGoal(from, to, arr);
     const currentPos = getCurrentPos(from, arr);
-    if (isCorrectWay(positions, currentPos)) {
+    const isCorrect = isCorrectWay(positions, currentPos);
+    if (isCorrect) {
       const listOfWays = getListOfWays(positions, currentPos, arr);
-      if (listOfWays) {
-        walk(listOfWays, arr);
-        if (isDone(arr)) console.log('The game is solved');
-      } else {
-        message();
-      }
-    } else {
-      message();
-    }
+      //return the foo of message uses to stop continue the code
+      if (!listOfWays) return message();
+      if (listOfWays) walk(listOfWays, arr);
+      if (isDone(arr)) console.log('The game is solved');
+    } 
+    if (!isCorrect) message();
   }
 }
