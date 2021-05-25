@@ -1,7 +1,7 @@
 import { getListOfWays } from '../handlers/getListOfWays.js';
 import { getPositionOfSpaceAndGoal, getCurrentPos } from '../handlers/checkMove.js';
 import { walk } from '../handlers/walk.js';
-import { isCorrectWay } from '../handlers/isCorrectData.js';
+import { isCorrectWay } from '../handlers/isCorrectData/isCorrectData.js';
 import { isDone } from '../handlers/isDone.js';
 
 export default function transfer (arr) {
