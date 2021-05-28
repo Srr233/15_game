@@ -11,6 +11,7 @@ function isCorrectWay(way, chosenPos) {
   if (checkForSideWalkUpBottom(way, chosenPos)) return true;
   if (checkForSidesWalkLeftRight(way, chosenPos)) return true;
   if (checkGoToSpaceXY(way, chosenPos)) return true;
+  return true;
 }
 
 export { isCorrectWay };
