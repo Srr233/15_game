@@ -2,11 +2,7 @@ import EMPTY_POS from '../constants/emptyCardNum.js';
 import { getCurrentPos } from './checkMove.js';
 
 function getDifferenceIsMore1(n1, n2) {
-  function toPositiveNumber(n) {
-    if (n < 0) return Math.abs(n);
-    return n;
-  }
-  return toPositiveNumber(n1 - n2) > 1
+  return Math.abs(n1 - n2) > 1
 }
 function checkSides(chosenPos, direction, arr) {
   const [directionArr, directionIndex] = getCurrentPos(direction, arr);
