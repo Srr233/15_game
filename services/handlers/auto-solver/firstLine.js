@@ -3,139 +3,136 @@ import { walk } from "../walk.js";
 import { getWay } from "./getWay.js";
 import { move } from "./move.js";
 
-function getFirstLine (arr, goal, block, twoLine) {
-  const forDOM = [];
+function getFirstLine() {
   let mySwitch = true;
   let copyGoal;
   let copyBlock;
-
+  const twoLine = [1, 2, 3, 4, 5, 9, 13];
+  const forDOM = [];
   for (const i of twoLine) {
     let wayForN;
     let curr;
     if (i % 4 === 0) {
-      copyGoal = goal.slice();
+      copyGoal = this._goal.slice();
       copyGoal[1] -= 1;
       copyGoal[0] += 1;
-      wayForN = getWay(arr, i - 1, arr[copyGoal[0] + 1][copyGoal[1]], block);
-      forDOM.push(...walk(wayForN, arr, block));
+      wayForN = getWay(this._arr, i - 1, this._arr[copyGoal[0] + 1][copyGoal[1]], this._block);
+      forDOM.push(...walk(wayForN, this._arr, this._block));
 
       copyGoal[0] -= 1;
-      wayForN = getWay(arr, i, arr[copyGoal[0] + 1][copyGoal[1]], block);
-      forDOM.push(...walk(wayForN, arr, block));
+      wayForN = getWay(this._arr, i, this._arr[copyGoal[0] + 1][copyGoal[1]], this._block);
+      forDOM.push(...walk(wayForN, this._arr, this._block));
 
-      wayForN = getWay(arr, i, arr[copyGoal[0]][copyGoal[1]], block);
-      curr = getCurrentPos(i - 1, arr);
-      block.push({ nArr: curr[0], nIndex: curr[1] });
-      forDOM.push(...walk(wayForN, arr, block));
+      wayForN = getWay(this._arr, i, this._arr[copyGoal[0]][copyGoal[1]], this._block);
+      curr = getCurrentPos(i - 1, this._arr);
+      this._block.push({ nArr: curr[0], nIndex: curr[1] });
+      forDOM.push(...walk(wayForN, this._arr, this._block));
 
       copyGoal[0] += 1;
-      block[2] = block.pop();
-      wayForN = getWay(arr, i - 1, arr[copyGoal[0]][copyGoal[1]], block);
-      curr = getCurrentPos(i - 1, arr);
-      block.push({ nArr: curr[0], nIndex: curr[1] });
-      forDOM.push(...walk(wayForN, arr, block));
+      this._block[2] = this._block.pop();
+      wayForN = getWay(this._arr, i - 1, this._arr[copyGoal[0]][copyGoal[1]], this._block);
+      curr = getCurrentPos(i - 1, this._arr);
+      this._block.push({ nArr: curr[0], nIndex: curr[1] });
+      forDOM.push(...walk(wayForN, this._arr, this._block));
       copyGoal[0] -= 1;
       copyGoal[1] += 1;
 
-      block[2] = block.pop();
-      wayForN = getWay(arr, i, arr[copyGoal[0]][copyGoal[1]], block);
-      curr = getCurrentPos(i, arr);
-      block.push({ nArr: curr[0], nIndex: curr[1] });
-      forDOM.push(...walk(wayForN, arr, block));
+      this._block[2] = this._block.pop();
+      wayForN = getWay(this._arr, i, this._arr[copyGoal[0]][copyGoal[1]], this._block);
+      curr = getCurrentPos(i, this._arr);
+      this._block.push({ nArr: curr[0], nIndex: curr[1] });
+      forDOM.push(...walk(wayForN, this._arr, this._block));
 
-      block[2] = block.pop();
-      wayForN = getWay(arr, i - 1, arr[copyGoal[0]][copyGoal[1] - 1], block);
-      curr = getCurrentPos(i - 1, arr);
-      block.push({ nArr: curr[0], nIndex: curr[1] });
-      forDOM.push(...walk(wayForN, arr, block));
-      goal[0] += 1;
-      goal[1] = 0;
+      this._block[2] = this._block.pop();
+      wayForN = getWay(this._arr, i - 1, this._arr[copyGoal[0]][copyGoal[1] - 1], this._block);
+      curr = getCurrentPos(i - 1, this._arr);
+      this._block.push({ nArr: curr[0], nIndex: curr[1] });
+      forDOM.push(...walk(wayForN, this._arr, this._block));
+      this._goal[0] += 1;
+      this._goal[1] = 0;
     } else if (i % 4 === 1 && i !== 1) {
       if (mySwitch) {
         mySwitch = false;
-        copyGoal = goal.slice();
+        copyGoal = this._goal.slice();
 
         copyGoal[0] += 2;
-        curr = getCurrentPos(i, arr);
-        wayForN = getWay(arr, i, arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        curr = getCurrentPos(i, this._arr);
+        wayForN = getWay(this._arr, i, this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
         copyGoal[1] += 1;
-        curr = getCurrentPos(twoLine[twoLine.length - 2], arr);
-        wayForN = getWay(arr, twoLine[twoLine.length - 2], arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        curr = getCurrentPos(twoLine[twoLine.length - 2], this._arr);
+        wayForN = getWay(this._arr, twoLine[twoLine.length - 2], this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
         copyGoal[1] += 1;
-        curr = getCurrentPos(twoLine[twoLine.length - 1], arr);
-        wayForN = getWay(arr, twoLine[twoLine.length - 1], arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        curr = getCurrentPos(twoLine[twoLine.length - 1], this._arr);
+        wayForN = getWay(this._arr, twoLine[twoLine.length - 1], this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
 
 
         copyGoal[1] -= 2;
         copyGoal[0] -= 1;
-        copyBlock = block.slice(4);
-        block = [...block.slice(0, -3), copyBlock[1], copyBlock[2]];
-        curr = getCurrentPos(i, arr);
-        wayForN = getWay(arr, i, arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        copyBlock = this._block.slice(4);
+        this._block = [...this._block.slice(0, -3), copyBlock[1], copyBlock[2]];
+        curr = getCurrentPos(i, this._arr);
+        wayForN = getWay(this._arr, i, this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
         copyGoal[0] += 1;
-        copyBlock = block.slice(4);
-        block = [...block.slice(0, -3), copyBlock[1], copyBlock[2]];
-        curr = getCurrentPos(twoLine[twoLine.length - 2], arr);
-        wayForN = getWay(arr, twoLine[twoLine.length - 2], arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        copyBlock = this._block.slice(4);
+        this._block = [...this._block.slice(0, -3), copyBlock[1], copyBlock[2]];
+        curr = getCurrentPos(twoLine[twoLine.length - 2], this._arr);
+        wayForN = getWay(this._arr, twoLine[twoLine.length - 2], this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
         copyGoal[1] += 1;
-        copyBlock = block.slice(4);
-        block = [...block.slice(0, -3), copyBlock[1], copyBlock[2]];
-        curr = getCurrentPos(twoLine[twoLine.length - 1], arr);
-        wayForN = getWay(arr, twoLine[twoLine.length - 1], arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        copyBlock = this._block.slice(4);
+        this._block = [...this._block.slice(0, -3), copyBlock[1], copyBlock[2]];
+        curr = getCurrentPos(twoLine[twoLine.length - 1], this._arr);
+        wayForN = getWay(this._arr, twoLine[twoLine.length - 1], this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
 
 
         copyGoal[1] -= 1;
         copyGoal[0] -= 2;
-        copyBlock = block.slice(4);
-        block = [...block.slice(0, -3), copyBlock[1], copyBlock[2]];
-        curr = getCurrentPos(i, arr);
-        wayForN = getWay(arr, i, arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        copyBlock = this._block.slice(4);
+        this._block = [...this._block.slice(0, -3), copyBlock[1], copyBlock[2]];
+        curr = getCurrentPos(i, this._arr);
+        wayForN = getWay(this._arr, i, this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
         copyGoal[0] += 1;
-        copyBlock = block.slice(4);
-        block = [...block.slice(0, -3), copyBlock[1], copyBlock[2]];
-        curr = getCurrentPos(twoLine[twoLine.length - 2], arr);
-        wayForN = getWay(arr, twoLine[twoLine.length - 2], arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        copyBlock = this._block.slice(4);
+        this._block = [...this._block.slice(0, -3), copyBlock[1], copyBlock[2]];
+        curr = getCurrentPos(twoLine[twoLine.length - 2], this._arr);
+        wayForN = getWay(this._arr, twoLine[twoLine.length - 2], this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
 
         copyGoal[0] += 1;
-        copyBlock = block.slice(4);
-        block = [...block.slice(0, -3), copyBlock[1], copyBlock[2]];
-        curr = getCurrentPos(twoLine[twoLine.length - 1], arr);
-        wayForN = getWay(arr, twoLine[twoLine.length - 1], arr[copyGoal[0]][copyGoal[1]], block);
-        block.push({ nArr: curr[0], nIndex: curr[1] });
-        forDOM.push(...walk(wayForN, arr, block));
+        copyBlock = this._block.slice(4);
+        this._block = [...this._block.slice(0, -3), copyBlock[1], copyBlock[2]];
+        curr = getCurrentPos(twoLine[twoLine.length - 1], this._arr);
+        wayForN = getWay(this._arr, twoLine[twoLine.length - 1], this._arr[copyGoal[0]][copyGoal[1]], this._block);
+        this._block.push({ nArr: curr[0], nIndex: curr[1] });
+        forDOM.push(...walk(wayForN, this._arr, this._block));
       }
     } else {
-      forDOM.push(...move(arr, i, goal, block, true));
-      goal[1] += 1;
+      forDOM.push(...move(this._arr, i, this._goal, this._block, true));
+      this._goal[1] += 1;
     }
   }
-  return [forDOM, block];
+  return forDOM;
 }
 
-function solveFirstLine (arr, goal, block) {
-  return getFirstLine(arr, goal, block, [1, 2, 3, 4, 5, 9, 13]);
-}
-export { solveFirstLine };
+export { getFirstLine };
