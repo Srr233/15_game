@@ -1,5 +1,5 @@
 import { getAnotherLine } from "./anotherLine.js";
-import { getFirstLine } from "./firstLine.js";
+import { getFirstLine } from "./firstLine/firstLine.js";
 import { getLastLine } from "./lastLine.js";
 
 class AutoSolve {
